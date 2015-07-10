@@ -4,8 +4,6 @@ using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour {
 
-	public Text DebugText;
-
 	Rigidbody2D rb;
 	public int moveSpeed = 2;
     public LayerMask groundLayer; //地面のレイヤー
@@ -18,10 +16,13 @@ public class PlayerScript : MonoBehaviour {
 		rb = GetComponent<Rigidbody2D>();
 	}
 
+	void OnCollisionEnter2D(Collision2D coll) {
+		isGrounded = true;
+	}
+	void OnCollisionExit2D(Collision2D coll) {
+		isGrounded = false;
+	}
     void Update() {
-        //接地判定用のラインを引く
-        isGrounded = Physics2D.Linecast(transform.position + transform.up * 1,transform.position - transform.up * 0.1f,groundLayer); //Linecastが判定するレイヤー
-
         //isGrounded=true且つJumpボタンを押した時Jumpメソッド実行
 #if UNITY_EDITOR
         if (isGrounded && Input.GetButtonDown("Jump")) {
@@ -41,7 +42,6 @@ public class PlayerScript : MonoBehaviour {
 		h = Input.acceleration.x;
 #endif
 
-		DebugText.text = h.ToString();
 		if (h < -0.1) {
 			transform.Rotate (new Vector3 (0f, 0f, 10f));
 		} else if (h > 0.1) {
