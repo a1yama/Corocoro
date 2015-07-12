@@ -17,10 +17,10 @@ public class PlayerScript : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D(Collision2D coll) {
-		isGrounded = true;
+        isGrounded = true;
 	}
 	void OnCollisionExit2D(Collision2D coll) {
-		isGrounded = false;
+        isGrounded = false;
 	}
     void Update() {
         //isGrounded=true且つJumpボタンを押した時Jumpメソッド実行
