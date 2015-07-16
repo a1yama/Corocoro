@@ -3,7 +3,6 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour {
-	public Text text;
 
 	Rigidbody2D rb;
     public LayerMask groundLayer; //地面のレイヤー
@@ -37,7 +36,6 @@ public class PlayerScript : MonoBehaviour {
 		}
 		h = Input.acceleration.x;
 #endif
-		text.text = isGrounded.ToString ();
         if (h < -0.02) {
 			transform.Rotate (new Vector3 (0f, 0f, 10f));
 		} else if (h > 0.02) {
